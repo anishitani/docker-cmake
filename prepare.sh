@@ -11,7 +11,8 @@ do
   cat << EOF > $CMAKE_VERSION/Dockerfile
   FROM alpine
   MAINTAINER André Nishitani <atoshio25@gmail.com>
-  RUN wget $CMAKE_URL \\
+  RUN apk add --no-cache curl build-base \\
+      && curl -O $CMAKE_URL \\
       && mv cmake-$CMAKE_VERSION.tar.gz /tmp/ && cd /tmp \\
       && tar -xzf cmake-$CMAKE_VERSION.tar.gz \\
       && cd cmake-$CMAKE_VERSION \\
